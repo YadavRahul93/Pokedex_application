@@ -1,0 +1,42 @@
+* {
+  font-family: "Roboto";
+  font-weight: 400;
+}
+
+.rmsc .dropdown-container{
+  background-color: #C9DDE2 !important;
+  border-radius: 8px;
+}
+
+.dropdown-container .dropdown-heading {
+  background-color: #C9DDE2 !important;
+  border-radius: 8px;
+  height: 57px !important;
+  line-height: 3.5;
+}
+.modal {
+  background-color: rgba(46, 49, 86, 0.9);
+}
+
+.modal-content .modal-body{
+  padding: 2rem 3rem;
+}
+#button-addon1 .fa-search:before {
+  content: "\f002";
+  font-weight: 400;
+  font-size: 1.25rem;
+  color: #5D5F7E;
+  ;
+}
+p, span{
+  font-size: 1rem;
+  color: #5D5F7E;
+  margin-bottom: 0 !important;
+}
+
+@media only screen and (max-width : 1023px) {
+
+  .modal-content .modal-body {
+    padding: 1rem 1rem;
+}
+}

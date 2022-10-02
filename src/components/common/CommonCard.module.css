@@ -1,0 +1,55 @@
+:root {
+    --bg-water: #cbd5ed;
+    --bg-fire: #edc2c4;
+    --bg-grass: #c0d4c8;
+    --bg-psychic: #ddc0cf;
+    --bg-ghost: #d7c2d7;
+    --bg-ground: #f4d1a6;
+    --bg-fighting: #fcc1b0;
+    --bg-dragon: #cadcdf;
+    --bg-fairy: #e4c0cf;
+    --bg-electric: #e2e2a0;
+    --bg-bug: #c1e0c8;
+    --bg-poison: #cfb7ed;
+    --bg-dark: #c6c5e3;
+    --bg-steel: #c2d4ce;
+    --bg-normal: #ddcbd0;
+    --bg-rock: #c5aea8;
+    --bg-ice: #c7d7df;
+    --bg-flying: #b2d2e8;
+    --bg-unknown: #c0dfdd;
+    --bg-shadow: #cacaca;
+  }
+
+.card_main{
+ width: 100%;
+ height: calc(100% - 15px);
+ border: dashed 2px rgb(87, 85, 85) !important;
+}
+
+.card_img{
+    width: 100%;
+    height: 30vh;
+    object-fit: contain;
+    padding: 1rem;
+}
+
+.card__title{
+  text-align: center;
+  font-weight: 600;
+  color: #2E3156;
+  margin-bottom: 0 !important;
+}
+.card__text{
+  font-weight: 400;
+  text-align: center;
+  color: #2E3156;
+  padding-bottom: 0.5rem;
+
+}
+
+@media (max-width: 1023px){
+  .card_main{
+    max-height: 250px !important;
+  }
+}
