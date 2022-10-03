@@ -18,12 +18,11 @@ function Home(props) {
   const genderList = useSelector((state) => state.reducer.AllGenderList);
 
   useEffect(() => {}, [pokemonArr, hasMore]);
-
   const fetchMoreData = () => {
     if (pokemonArr.length === 100) {
       setHasMore(false);
     }
-      dispatch(actions.pokemonAppendList(nextUrl, genderList));
+    dispatch(actions.pokemonAppendList(nextUrl, genderList));
   };
 
   return (
@@ -59,11 +58,12 @@ function Home(props) {
               <PokemonCard
                 key={`num_${index}${eachPokemon.data.id}`}
                 id={eachPokemon.data?.id}
-                height={eachPokemon.data.height}
-                weight={eachPokemon.data.weight}
-                name={eachPokemon.data.name}
-                type={eachPokemon.data.types}
-                abilities={eachPokemon.data.abilities}
+                height={eachPokemon.data?.height}
+                weight={eachPokemon.data?.weight}
+                name={eachPokemon.data?.name}
+                type={eachPokemon.data?.types}
+                abilities={eachPokemon.data?.abilities}
+                gender={eachPokemon.data?.gender}
                 imgPokemon={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${eachPokemon.data.id}.svg`}
               ></PokemonCard>
             ))}

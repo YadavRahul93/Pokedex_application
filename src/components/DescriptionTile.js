@@ -18,6 +18,7 @@ function DescriptionTile({
   height,
   weight,
   abilities,
+  gender
 }) {
   const [pokemonDesp, setPokemonDesp] = useState("");
 
@@ -116,16 +117,18 @@ function DescriptionTile({
                   <p>{weight / 10} kg</p>
                 </Col>
                 <Col xs={6} md={3}>
-                  {despInfo.gender_rate === 3 ? (
-                    <p className={styles.mini__header}>Gender</p>
-                  ) : (
+                {gender.length > 1 ? (
                     <p className={styles.mini__header}>Gender(s)</p>
-                  )}
-                  {despInfo.gender_rate === 3 ? (
-                    <p className={styles.mini__header}>Genderless</p>
                   ) : (
-                    <p>Male, Female</p>
+                    <p className={styles.mini__header}>Gender</p>
                   )}
+                { 
+                    gender.map((e, index) => (
+                      <span key={index + "gen-zx"}>
+                        {Capitalize(e)}
+                        {gender.length !== index + 1 ? `, ` : ""}
+                      </span>
+                    ))}
                 </Col>
                 <Col xs={6} md={3}>
                   <p className={styles.mini__header}>Egg Groups</p>

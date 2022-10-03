@@ -12,6 +12,7 @@ function PokemonCard({
   height,
   weight,
   abilities,
+  gender
 }) {
   const [show, setShow] = useState(false);
   const [strengthInfo, setStrengthInfo] = useState("");
@@ -58,6 +59,7 @@ function PokemonCard({
         height={height}
         weight={weight}
         abilities={abilities}
+        gender={gender}
       ></DescriptionTile>
     </>
   );
