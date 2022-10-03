@@ -7,7 +7,7 @@ function FilterGender(props) {
       ? selected.length > 1
         ? `${selected[0]?.label}  + ${selected.length} More`
         : selected[0]?.label
-      : "No Items Selected";
+      : "Select Gender";
   };
   const options = [
     { label: "male", value: "male" },
