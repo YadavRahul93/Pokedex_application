@@ -1,5 +1,5 @@
 import axios from "axios";
-import { fetchAllGender } from "../../utility/service";
+import { fetchAllGender, getTypesSet } from "../../utility/service";
 
 const fetchPokemonList = (list) => ({
   type: "POKEMON_LIST",
@@ -18,6 +18,11 @@ const fetchPreviousUrl = (list) => ({
 
 const fetchAllGenderList = (list) => ({
   type: "ALL_GENDER_LIST",
+  payload: list,
+});
+
+const fetchAllTypesList = (list) => ({
+  type: "ALL_TYPES_LIST",
   payload: list,
 });
 
@@ -42,6 +47,7 @@ const pokemonList = (baseUrl = null) => {
   }
   return async (dispatch) => {
     const genderList = await fetchAllGender();
+    const typesSet = await getTypesSet();
     await axios
       .get(baseUrl)
       .then((response) => {
@@ -74,6 +80,7 @@ const pokemonList = (baseUrl = null) => {
                 });
               });
               dispatch(fetchAllGenderList(genderList));
+              dispatch(fetchAllTypesList(typesSet));
               dispatch(fetchPokemonList(allData));
               dispatch(referenceList(allData));
             })

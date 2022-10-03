@@ -1,64 +1,82 @@
-[data-tooltip]::before {
-    content: attr(data-tooltip);
-  }
-  
-  .modal__header_mob, .modal__header_mob__btn{
-    display: none;
-  }
-  .modal__header_desk{
-    display: block;
-  }
-  
-  /* (B) POSITION TOOLTIP */
-  
-  [data-tooltip] {
-    position: relative;
-    display: inline-block;
-    font-style: normal;
-    font-weight: 600;
-  }
-  
-  [data-tooltip]::before {
-    position: absolute;
-    z-index: 999;
-  }
-  
-  
-  
-  [data-tooltip].top::before {
-    top: 100%;
-    margin-top: 10px;
-  
-  }
-  
-  
-  
-  /* (C) SHOW TOOLTIP ONLY ON HOVER */
-  
-  [data-tooltip]::before {
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.5s;
-  
-  }
-  
-  [data-tooltip]:hover::before {
-    visibility: visible;
-    opacity: 1;
-  
-  }
-  
-  
-  [data-tooltip]::before {
-    background: #000;
-    color: #fff;
-    padding: 5px;
-    min-width: 400px;
-    text-align: center;
-    z-index: 500;
-    font-size: 10px;
-  
-  }
+.modal__header_mob, .modal__header_mob__btn{
+  display: none;
+}
+.modal__header_desk{
+  display: block;
+}
+
+.tooltip_div {
+  position: fixed;
+  left: 50%;
+  top: 64%;
+  transform: translate(-50%, -50%);
+  background-color: #2E3156;
+  color: white;
+  height: 30vh;
+  max-height: 30vh;
+  min-width: 50vw;
+  z-index: 9999;
+  padding: 30px;
+  border-radius: 20px;
+}
+.tooltip_div_internal {
+  max-height: 23vh;
+  overflow-y: auto;
+  text-align: justify;
+  padding-bottom: 10px;
+}
+.tooltip_div_internal p{
+  color: white !important;
+}
+.tooltip_div_internal::-webkit-scrollbar {
+  width: 0.5rem;
+}
+ 
+.tooltip_div_internal::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+ 
+.tooltip_div_internal::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}
+.close_tooltip {
+  color: #fff;
+  top: 5px;
+  right: 20px;
+}
+.readMore {
+  position: relative;
+  display: inline-block;
+  font-style: normal !important;
+  font-weight: 800;
+}
+
+.close {
+  color: #2E3156;
+  background-color: transparent;
+  position: absolute;
+  height: 25px;
+  width: 23px;
+  top: 40px;
+  right: 30px;
+  font-size: 15px;
+  border-radius: 50%;
+  border: 1px solid #333;
+}
+.close:hover,
+.close:focus {
+  color: white;
+  transform: scale(1.1);
+  transition: transform 0.2s ease-in-out;
+  outline: none;
+}
+
+.close_tooltip {
+  color: #fff;
+  top: 5px;
+  right: 20px;
+}
 
   :root {
     --bg-water: #cbd5ed;
@@ -94,6 +112,8 @@
     margin: 0 2px;
     border: 1px solid #2E3156;
     border-radius: 4px;
+    width: auto !important;
+    margin-bottom: 4px;
   }
 
   span.modal__headaer__title {
@@ -146,6 +166,20 @@
   font-size: 15px;
   border-radius: 50% !important;
   border: 1px solid #333 !important;
+
+}
+
+.close__btn__modal {
+  position: absolute;
+  height: 25px !important;
+  width: 23px !important;
+  color: white !important;
+  top: 18px;
+  right: 10px;
+  font-size: 15px;
+  border-radius: 50% !important;
+  border: 2px solid white !important;
+  background-color: #c3c3cd !important;
 
 }
 
@@ -208,5 +242,23 @@
   }
   .modal__description{
     padding: 0;
+  }
+
+  .tooltip_div {
+    position: fixed;
+    left: 50%;
+    top: 64%;
+  }
+
+  .tooltip_div {
+    max-height: 50vh;
+    padding: 1rem;
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+    color: white !important;
+  }
+  .tooltip_div_internal {
+    max-height: 43vh;
   }
 }

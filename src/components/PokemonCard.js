@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import DescriptionTile from "./DescriptionTile";
 import Col from "react-bootstrap/Col";
 import CommonCard from "./common/CommonCard";
@@ -12,20 +13,40 @@ function PokemonCard({
   height,
   weight,
   abilities,
-  gender
+  gender,
 }) {
   const [show, setShow] = useState(false);
-  const [strengthInfo, setStrengthInfo] = useState("");
+  const [strengthInfo, setStrengthInfo] = useState([]);
   const [despInfo, setDespInfo] = useState("");
+  const allTypeList = useSelector((state) => state.reducer.allTypesSet);
 
-  const getStrengthInfo = async (id) => {
-    const fetchedData = await fetchStrengthWeakness(id);
-    setStrengthInfo(fetchedData);
+  const fetchStrengthWeakness = (type) => {
+    let arrList = [];
+    allTypeList.filter((e) =>
+      type.some((x) => {
+        if (x.type.name === e.name) {
+          arrList.push(...e.weak_against);
+        }
+      })
+    );
+
+    const ids = arrList.map((o) => o.name);
+    const filtered = arrList.filter(
+      ({ name }, index) => !ids.includes(name, index + 1)
+    );
+    setStrengthInfo(filtered);
   };
+
+  const getStrengthInfo = async (type) => {
+    fetchStrengthWeakness(type);
+  };
+
   const getDesp = async (id) => {
     const fetchedData = await fetchPokemonDesp(id);
     setDespInfo(fetchedData);
   };
+
+  useEffect(() => {}, [strengthInfo]);
 
   return (
     <>
@@ -35,7 +56,7 @@ function PokemonCard({
         md={2}
         onClick={() => {
           setShow(true);
-          getStrengthInfo(id);
+          getStrengthInfo(type);
           getDesp(id);
         }}
       >

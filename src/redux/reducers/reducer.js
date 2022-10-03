@@ -1,6 +1,7 @@
 const initialState = {
     pokemonList : [],
     AllGenderList : [],
+    allTypesSet: [],
     referenceList: [],
     nextListUrl: '',
     previousListUrl: ''
@@ -17,6 +18,11 @@ const reducer = ( state = initialState, {type, payload}) =>{
             return {
                 ...state,
                 AllGenderList : payload
+            }
+        case "ALL_TYPES_LIST":
+            return {
+                ...state,
+                allTypesSet : payload
             }
         case "NEXT_LIST":
             return {

@@ -18,9 +18,10 @@ function DescriptionTile({
   height,
   weight,
   abilities,
-  gender
+  gender,
 }) {
   const [pokemonDesp, setPokemonDesp] = useState("");
+  const [showDescp, setShowDescp] = useState(false);
 
   const getPokemonDescription = (despInfo) => {
     if (despInfo) {
@@ -97,12 +98,29 @@ function DescriptionTile({
                 <div className={styles.modal__description}>
                   {pokemonDesp && <span>{readMoreData(pokemonDesp)}</span>}
                   {pokemonDesp?.trim()?.length > 300 ? (
-                    <i data-tooltip={pokemonDesp} className={styles.top}>
+                    <span
+                      className={styles.readMore}
+                      onClick={() => setShowDescp(!showDescp)}
+                    >
                       readmore
-                    </i>
+                    </span>
                   ) : (
                     ""
                   )}
+                  <div
+                    className={styles.tooltip_div}
+                    style={{ display: showDescp ? "block" : "none" }}
+                  >
+                    <button
+                      type="button"
+                      className={`btn-close ${styles.close__btn__modal}`}
+                      aria-label="Close"
+                      onClick={() => setShowDescp(!showDescp)}
+                    ></button>
+                    <div className={styles.tooltip_div_internal}>
+                      <p>{pokemonDesp}</p>
+                    </div>
+                  </div>
                 </div>
               </Col>
             </Row>
@@ -117,18 +135,17 @@ function DescriptionTile({
                   <p>{weight / 10} kg</p>
                 </Col>
                 <Col xs={6} md={3}>
-                {gender.length > 1 ? (
+                  {gender.length > 1 ? (
                     <p className={styles.mini__header}>Gender(s)</p>
                   ) : (
                     <p className={styles.mini__header}>Gender</p>
                   )}
-                { 
-                    gender.map((e, index) => (
-                      <span key={index + "gen-zx"}>
-                        {Capitalize(e)}
-                        {gender.length !== index + 1 ? `, ` : ""}
-                      </span>
-                    ))}
+                  {gender.map((e, index) => (
+                    <span key={index + "gen-zx"}>
+                      {Capitalize(e)}
+                      {gender.length !== index + 1 ? `, ` : ""}
+                    </span>
+                  ))}
                 </Col>
                 <Col xs={6} md={3}>
                   <p className={styles.mini__header}>Egg Groups</p>
@@ -160,30 +177,25 @@ function DescriptionTile({
                       }}
                     >
                       {Capitalize(e.type.name)}
-                      {/* {type.length !== index + 1 ? `,` : ""} */}
                     </span>
                   ))}
                 </Col>
                 <Col xs={12} md={6}>
                   <p className={styles.mini__header}>Weak Against</p>
-                  {strengthInfo?.damage_relations?.double_damage_from.map(
-                    (e, index) => (
-                      <span
-                        className={styles.enabled_color}
-                        key={`weak-${index}`}
-                        style={{
-                          background: `var(--bg-${e.name})`,
-                        }}
-                      >
-                        {Capitalize(e.name)}
-                        {/* {strengthInfo.damage_relations.double_damage_from
-                          .length !==
-                        index + 1
-                          ? `,`
-                          : ""} */}
-                      </span>
-                    )
-                  )}
+                  <Row>
+                  {strengthInfo &&
+                    strengthInfo.map((e, index) => (
+                        <div
+                          className={styles.enabled_color}
+                          key={`weak-${index}`}
+                          style={{
+                            background: `var(--bg-${e.name})`,
+                          }}
+                        >
+                          {Capitalize(e.name)}
+                        </div>
+                    ))}
+                    </Row>
                 </Col>
               </Row>
             </div>
