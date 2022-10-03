@@ -15,7 +15,13 @@ function CommonCard({ imgPokemon, name, id, type }) {
               : `var(--bg-${resultType[0]})`,
         }}
       >
-        <Card.Img className={styles.card_img} variant="top" src={imgPokemon} />
+        <div className={styles.card_img__container}>
+          <Card.Img
+            className={styles.card_img}
+            variant="top"
+            src={imgPokemon}
+          />
+        </div>
         <Card.Body>
           <Card.Title className={styles.card__title}>
             {Capitalize(name)}

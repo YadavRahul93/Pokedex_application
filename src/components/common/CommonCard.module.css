@@ -36,7 +36,7 @@
 
 .card__title{
   text-align: center;
-  font-weight: 600;
+  font-weight: 600 !important;
   color: #2E3156;
   margin-bottom: 0 !important;
 }
@@ -49,7 +49,15 @@
 }
 
 @media (max-width: 1023px){
-  .card_main{
+
+  .card_img__container{
     max-height: 250px !important;
+    padding: 0;
+    width: 100%;
   }
+  .card_img{
+    padding: 1rem 0.5rem;
+    width: 100%;
+  }
+
 }
